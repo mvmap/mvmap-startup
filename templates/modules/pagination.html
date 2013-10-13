@@ -1,0 +1,71 @@
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-4">
+        {% if paginator.pages <= 5 %}
+            <ul class="pagination">
+                {% if paginator.has_prev %}
+                    <li><a href="{{ paginator.page - 1 }}">&laquo;</a></li>
+                {% else %}
+                    <li class="disabled"><a href="javascript:void();">&laquo;</a></li>
+                {% end %}
+                {% for p in range(1, paginator.pages + 1) %}
+                    {% if paginator.page == p %}
+                        <li class="active"><a href="javascript:void();">{{p}}</a></li>
+                    {% else %}
+                        <li><a href="/page/{{p}}">{{p}}</a></li>
+                    {% end %}
+                {% end %}
+                {% if paginator.has_next %}
+                    <li><a href="/page/{{paginator.page + 1 }}">&raquo;</a></li>
+                {% else %}
+                    <li class="disabled"><a href="javascript:void();">&raquo;</a></li>
+                {% end %}
+            </ul>
+        {% else %}
+        {% comment following is total pages > 5%}
+        <ul class="pagination">
+            {% if paginator.has_prev %}
+                <li><a href="{{ paginator.page - 1 }}">&laquo;</a></li>
+            {% else %}
+                <li class="disabled"><a href="javascript:void();">&laquo;</a></li>
+            {% end %}
+            {% if paginator.page < 3 %}
+                {% if paginator.page == 1 %}
+                    <li class="active"><a href="javascript:void();">1</a></li>
+                    <li><a href="/page/2">2</a></li>
+                {% elif paginator.page == 2 %}
+                    <li><a href="/page/1">1</a></li>
+                    <li class="active"><a href="javascript:void();">2</a></li>
+                {% else %}
+                {% end %}
+                <li><a href="/page/3">3</a></li>
+                <li><a href="/page/4">4</a></li>
+                <li class="disabled"><a href="javascript:void();">....</a></li>
+                <li><a href="/page/{{paginator.pages}}">{{paginator.pages}}</a></li>
+
+                {% if paginator.has_next %}
+                    <li><a href="/page/{{paginator.page + 1 }}">&raquo;</a></li>
+                {% else %}
+                    <li class="disabled"><a href="javascript:void();">&raquo;</a></li>
+                {% end %}
+            {% else %}
+
+                <li><a href="/page/{{paginator.page - 2}}">{{paginator.page - 2}}</a></li>
+                <li><a href="/page/{{paginator.page - 1}}">{{paginator.page - 1}}</a></li>
+                <li class="active"><a href="/page/{{paginator.page}}">{{paginator.page}}</a></li>
+                {% if paginator.page + 1 <= paginator.pages %}
+                    <li><a href="/page/{{paginator.page + 1}}">{{paginator.page + 1}}</a></li>
+                {%end%}
+                {% if paginator.page + 1 < paginator.pages %}
+                    <li class="disabled"><a href="javascript:void();">....</a></li>
+                    <li><a href="/page/{{paginator.pages}}">{{paginator.pages}}</a></li>
+                {% end %}
+                {% if paginator.has_next %}
+                    <li><a href="/page/{{paginator.page + 1 }}">&raquo;</a></li>
+                {% else %}
+                    <li class="disabled"><a href="javascript:void();">&raquo;</a></li>
+                {% end %}
+            {% end %}
+        </ul>
+        {%end%}
+    </div>
+</div>

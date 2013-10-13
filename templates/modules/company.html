@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+        <table class="table">
+            <tr>
+                <td>
+                    <a href="{{ company.website }}"><img src="{{ company.thumb_small }}" alt="" class="img-rounded"></a>
+                </td>
+                <td>
+                    <dl class="dl-horizontal"> 
+                        <dt>公司:</dt>
+                        <dd>
+                            <a href="{{company.website}}">
+                                {% if company.company_name %}
+                                    {{company.company_name}}
+                                {% else %}
+                                    {{ company.product_name }}
+                                {% end %}
+                            </a>
+                        </dd>
+                        <dt>简介:</dt>
+                        <dd>{{ company.intro}}</dd>
+                        <dt>时间:</dt>
+                        <dd>{{ company.create_time }}</dd>
+                        <dt>地点:</dt>
+                        <dd>{{ company.location }}</dd>
+                        <dt>状态:</dt>
+                        <dd>{{ company.status }}</dd>
+                        <dt>阶段:</dt>
+                        <dd>{{ company.stage }}</dd>
+                        <dt>领域:</dt>
+                        <dd>{{ company.domain }}</dd>
+                        <dt>Tag标签：</dt>
+                        <dd>{{ company.tags }}</dd>
+                    </dl>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div> 

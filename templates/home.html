@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block body %}
+    {% for com in companies %}
+        {% module Company(com) %}
+    {% end %}
+    {% module Page(paginator) %}
+{% end %}
+
