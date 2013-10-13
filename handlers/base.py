@@ -1,7 +1,10 @@
-#/usr/bin/env python
-#encoding:utf-8
+# encoding:utf-8
 
 import tornado.web
 
+
 class BaseHandler(tornado.web.RequestHandler):
-    pass
+
+    @property
+    def db(self):
+        return self.application.db
