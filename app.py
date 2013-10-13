@@ -9,10 +9,12 @@ import tornado.web
 import torndb
 from tornado.options import define, options
 
+from settings import *
+
 from urls import url_patterns as handlers
 from handlers.uimodules import *
 
-define("port", default=8888, help="run on the given port", type=int)
+define("port", default=8008, help="run on the given port", type=int)
 
 
 settings = dict(
@@ -22,9 +24,6 @@ settings = dict(
     cookie_secret="__TODO:_GENERATE_YOUR_OWN_RANDOM_VALUE_HERE__",
     debug=True,
 )
-
-
-db = torndb.Connection("localhost", "startups", "root", "root")
 
 
 class Application(tornado.web.Application):
