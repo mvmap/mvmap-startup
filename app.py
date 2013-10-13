@@ -6,10 +6,11 @@ import tornado.httpserver
 import tornado.ioloop
 import tornado.options
 import tornado.web
-
+import torndb
 from tornado.options import define, options
 
 from urls import url_patterns as handlers
+from handlers.uimodules import *
 
 define("port", default=8888, help="run on the given port", type=int)
 
@@ -17,14 +18,19 @@ define("port", default=8888, help="run on the given port", type=int)
 settings = dict(
     static_path=os.path.join(os.path.dirname(__file__), "static"),
     template_path=os.path.join(os.path.dirname(__file__), "templates"),
+    ui_modules=[{'Company': CompanyModule}, {'Page': PageModule}],
     cookie_secret="__TODO:_GENERATE_YOUR_OWN_RANDOM_VALUE_HERE__",
     debug=True,
 )
 
 
+db = torndb.Connection("localhost", "startups", "root", "root")
+
+
 class Application(tornado.web.Application):
 
     def __init__(self):
+        self.db = db
         tornado.web.Application.__init__(self, handlers, **settings)
 
 
